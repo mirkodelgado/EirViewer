@@ -147,4 +147,6 @@ Bootstrap, Fontawesome
 
 npm install bootstrap font-awesome
 
+git remote add origin https://github.com/mirkodelgado/EirViewer.git
+
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

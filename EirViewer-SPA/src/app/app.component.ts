@@ -7,4 +7,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'EirViewer-SPA';
+
+  crDate = new Date().getFullYear();      // get current year for footer copyright
+
 }
