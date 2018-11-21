@@ -1,0 +1,59 @@
+
+<div class="header_02">EIR Details</div>
+
+<div class="margin_bottom_20"></div>
+
+<div class="tab-panel">
+    <tabset class="member-tabset">
+      <tab heading="EIR Equipment">
+
+        <div class="margin_bottom_20"></div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <h4><label>In Date: </label> {{ primaryUnit.igDate  | date: 'MM/dd/yyyy HH:mm' }}</h4>
+            <h4><label>Depot: </label> {{ primaryUnit.depot.depotName }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>EIR: </label> {{ primaryUnit.igEir }}</h4>
+            <h4><label>Customer: </label> {{ primaryUnit.customer.customerName }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>In Type: </label> {{ primaryUnit.igType }}</h4>
+            <h4><label>Issued By: </label> {{ primaryUnit.igIssuedBy }}</h4>
+          </div>
+        </div>
+        
+        <div class="margin_bottom_20"></div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <h4><label>Unit ID: </label> {{ primaryUnit.igUnitId }}</h4>
+            <h4><label>Condition: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Pre-Trip: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Seal Number: </label> {{ primaryUnit.igCondition }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>Type: </label> {{ primaryUnit.igEquipmentType }}</h4>
+            <h4><label>Manufacturer: </label> {{ primaryUnit.igManufacturer }}</h4>
+            <h4><label>Hold Reason: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Gross Weight: </label> {{ primaryUnit.igCondition }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>Size: </label> {{ primaryUnit.igEquipmentSize }}</h4>
+            <h4><label>Mfg Date: </label> {{ primaryUnit.igMfgDate }}</h4>
+            <h4><label>Empty/Loaded: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Book Number: </label> {{ primaryUnit.igCondition }}</h4>
+          </div>
+        </div>
+
+      </tab>
+      <tab heading="EIR Photos">
+        <div class="margin_bottom_20"></div>
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+      </tab>
+    </tabset>
+  </div>
+
+
+
