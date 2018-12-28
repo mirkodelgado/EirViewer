@@ -25,7 +25,7 @@ export class GateService {
 
     let params = new HttpParams();
 
-    params = params.append('unitId', userParams.unitId);
+    params = params.append('unitid', userParams.unitid);
 
     return this.http.get<Gate[]>(this.baseUrl + 'getbyunitid', { observe: 'response', params})
       .pipe(map(response => {
@@ -95,16 +95,34 @@ export class GateService {
     return this.pictureInfo;
   }
 
-  setUserParams(eir: string) {
+  setEirParam(eir: string) {
     this.gateParams.eir = eir;
     localStorage.setItem('eir', eir);
   }
 
-  getUserParams(): any {
+  getEirParam(): any {
     this.gateParams.eir = localStorage.getItem('eir');
     console.log('param: ' + this.gateParams.eir);
     return this.gateParams;
   }
 
+  getSearchEir(): string {
+    return localStorage.getItem('eir');
+  }
+
+  setUnitParam(unitid: string) {
+    this.gateParams.unitid = unitid;
+    localStorage.setItem('unitid', unitid);
+  }
+
+  getUnitParam(): any {
+    this.gateParams.unitid = localStorage.getItem('unitid');
+    console.log('param: ' + this.gateParams.unitid);
+    return this.gateParams;
+  }
+
+  getSearchUnit(): string {
+    return localStorage.getItem('unitid');
+  }
 
 }

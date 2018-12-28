@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Gate } from '../_models/gate';
 import { GateService } from '../_services/gate.service';
 import { AlertifyService } from '../_services/alertify.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-unitresults',
@@ -16,18 +16,23 @@ export class UnitresultsComponent implements OnInit {
 
   userParams: any = {};
 
-  constructor(private gateService: GateService, private alertifyService: AlertifyService, private router: Router) { }
+  constructor(private gateService: GateService, private alertifyService: AlertifyService,
+              private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
 
-    this.gateUnitResults = this.gateService.getGateUnitResults();
+    this.route.data.subscribe(data => {
+      this.gateUnitResults = data['unit'];
+     });
+
+    // this.gateUnitResults = this.gateService.getGateUnitResults();
   }
 
   getGateEir(eir) {
 
     console.log('Unit Results: ' + eir);
 
-    this.gateService.setUserParams(eir);
+    this.gateService.setEirParam(eir);
 
     this.router.navigate(['app-eirresults']);
 
@@ -48,8 +53,15 @@ export class UnitresultsComponent implements OnInit {
     //  this.alertifyService.error(error);
     // });
 
-
-
-
   }
+
+  getSearchUnit(): string {
+    return this.gateService.getSearchUnit();
+  }
+
+  getUnitResultLength(): number {
+    return this.gateUnitResults.length;
+  }
+
+
 }

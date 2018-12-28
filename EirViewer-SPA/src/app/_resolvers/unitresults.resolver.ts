@@ -7,15 +7,15 @@ import { Observable, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class EirresultsResolver implements Resolve<Gate[]> {
+export class UnitresultsResolver implements Resolve<Gate[]> {
 
     constructor(private gateService: GateService, private router: Router, private alertify: AlertifyService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<Gate[]> {
-        return this.gateService.getGateByEir(this.gateService.getEirParam()).pipe (
+        return this.gateService.getGateByUnit(this.gateService.getUnitParam()).pipe (
             catchError(error => {
-                // this.alertify.error('Problem retrieving eir data');
-                this.alertify.error('Unable to find EIR ' + this.gateService.getSearchEir());
+                // this.alertify.error('Problem retrieving unit data');
+                this.alertify.error('Unable to find unit ' + this.gateService.getSearchUnit());
                 this.router.navigate(['/home']);
                 return of(null);
             })

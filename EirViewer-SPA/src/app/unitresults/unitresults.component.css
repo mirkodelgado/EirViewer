@@ -3,3 +3,11 @@ a {
     font-weight: normal;
     cursor: pointer;
   }  
+
+h4 {
+    color: #0796C2;
+}
+
+h4 label {
+    color: #000;
+}

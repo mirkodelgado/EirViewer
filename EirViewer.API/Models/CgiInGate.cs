@@ -28,7 +28,11 @@ namespace EirViewer.API.Models
         public DateTime IgDate { get; set; }
         public string IgCondition { get; set; }
         public DateTime? IgOutDate { get; set; }
-        public string IgEquipmentType { get; set; }
+
+        [ForeignKey("IgEquipmentType")]
+        public virtual EquipmentType EquipmentType { get; set; }
+
+        public Int16 IgEquipmentType { get; set; }
         public string IgEquipmentSize { get; set; }
         public string IgEquipmentGrade { get; set; }
         public string IgDismount { get; set; }
@@ -113,6 +117,16 @@ namespace EirViewer.API.Models
     }
 
 
+    [Table("DMS_GateEquipmentNSIType")]
+    public class EquipmentType           // Equipment Type Object
+    {
+        [Key]
+        [Column("etnCode")]
+        public Int16 EquipmentNumber { get; set; }
+
+        [Column("etnDescription")]
+        public string EquipmentName { get; set; }
+    }
 
 
 }

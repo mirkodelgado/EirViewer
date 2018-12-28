@@ -4,25 +4,39 @@
 <div class="margin_bottom_20"></div>
 
 <div class="row">
+    <div class="col-md-4 offset-md-4">
+        <h4 class="text-center"><label>Unit ID: </label> {{ getSearchUnit() }}</h4>
+    </div>
+</div>
+
+<div class="margin_bottom_20"></div>
+
+<div class="row">
     <div class="col-md-4 offset-md-4 ">
 
-<table class='table' *ngIf="gateUnitResults">
-    <thead>
-        <tr>
-            <th>In Date</th>
-            <th>EIR</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let gate of gateUnitResults">
-            <td>{{ gate.igCreateDate | date: 'MM/dd/yyyy' }}</td>
-            <td>
-                <a (click)="getGateEir(gate.igEir)" style="color : blue; text-decoration: underline" >{{ gate.igEir }}</a>
-                <!-- <a [routerLink]="['/app-eirresults']">{{ gate.igEir }}</a> -->
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <table class='table' *ngIf="gateUnitResults">
+            <thead>
+                <tr>
+                    <th>In Date</th>
+                    <th>EIR</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let gate of gateUnitResults">
+                    <td>{{ gate.igCreateDate | date: 'MM/dd/yyyy' }}</td>
+                    <td>
+                        <a (click)="getGateEir(gate.igEir)" style="color : blue; text-decoration: underline" >{{ gate.igEir }}</a>
+                        <!-- <a [routerLink]="['/app-eirresults']">{{ gate.igEir }}</a> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
 
+    </div>
 </div>
+
+<div class="row">
+    <div class="col-md-4 offset-md-4 ">
+        <h4 class="text-center"><label>Total Count: </label> {{ getUnitResultLength() }}</h4>
+    </div>
 </div>

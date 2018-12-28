@@ -39,10 +39,16 @@ namespace EirViewer.API.Controllers
 
             gate = gate.Include(g => g.Customer);
             gate = gate.Include(g => g.Depot);
+            gate = gate.Include(g => g.EquipmentType);
 
             var response = await gate.ToListAsync();
 
-            if (response.Count > 0)
+            if (response.Count == 0)
+            {
+                return BadRequest("EIR " + userParams.Eir + " could not be found" );
+            }
+            //if (response.Count > 0)
+            else
             {
                 var pictureInfo = new GatePictures();
 
@@ -83,10 +89,14 @@ namespace EirViewer.API.Controllers
 
             gate = gate.Include(g => g.Customer);
             gate = gate.Include(g => g.Depot);
+            gate = gate.Include(g => g.EquipmentType);
             
             gate = gate.OrderByDescending(g => g.IgCreateDate);
 
             var response = await gate.ToListAsync();
+
+            if (response.Count == 0)
+                return BadRequest("Unit " + userParams.UnitId + " could not be found" );
 
             return Ok(response);
         }

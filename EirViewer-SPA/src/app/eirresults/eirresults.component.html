@@ -30,21 +30,109 @@
           <div class="col-md-4">
             <h4><label>Unit ID: </label> {{ primaryUnit.igUnitId }}</h4>
             <h4><label>Condition: </label> {{ primaryUnit.igCondition }}</h4>
-            <h4><label>Pre-Trip: </label> {{ primaryUnit.igCondition }}</h4>
-            <h4><label>Seal Number: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Pre-Trip: </label> {{ getGateValue(primaryUnit.igPreTrip) }}</h4>
           </div>
           <div class="col-md-4">
-            <h4><label>Type: </label> {{ primaryUnit.igEquipmentType }}</h4>
-            <h4><label>Manufacturer: </label> {{ primaryUnit.igManufacturer }}</h4>
-            <h4><label>Hold Reason: </label> {{ primaryUnit.igCondition }}</h4>
-            <h4><label>Gross Weight: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Type: </label> {{ primaryUnit.equipmentType.equipmentName }}</h4>
+            <h4><label>Manufacturer: </label> {{ getGateValue(primaryUnit.igManufacturer) }}</h4>
+            <h4><label>Hold Reason: </label> {{ getGateHoldValue(primaryUnit.igOnHoldReason) }}</h4>
           </div>
           <div class="col-md-4">
             <h4><label>Size: </label> {{ primaryUnit.igEquipmentSize }}</h4>
             <h4><label>Mfg Date: </label> {{ primaryUnit.igMfgDate }}</h4>
-            <h4><label>Empty/Loaded: </label> {{ primaryUnit.igCondition }}</h4>
-            <h4><label>Book Number: </label> {{ primaryUnit.igCondition }}</h4>
+            <h4><label>Empty/Loaded: </label> {{ getGateEmptyLoadedValue(primaryUnit.igEmptyLoaded) }}</h4>
           </div>
+        </div>
+
+        <div class="row" *ngIf="!primaryIsChassis()">
+          <div class="col-md-4">
+            <h4><label>Seal Number: </label> {{ getGateValue(primaryUnit.igSealNumber) }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>Gross Weight: </label> {{ getGateGrossWeightValue(primaryUnit.igGrossWeight) }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>Book Number: </label> {{ getGateValue(primaryUnit.igBookingNumber) }}</h4>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="primaryIsChassis()">
+          <div class="col-md-4">
+            <h4><label>VIN: </label> {{ primaryUnit.igVin }}</h4>
+            <h4><label>Expires: </label> {{ primaryUnit.igLicenseExpiration }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>License: </label> {{ primaryUnit.igLicense }}</h4>
+            <h4><label>FHWA Problem: </label> {{ primaryUnit.igLicenseProblem }}</h4>
+          </div>
+          <div class="col-md-4">
+            <h4><label>State: </label> {{ primaryUnit.igLicenseState }}</h4>
+            <h4><label>FHWA Date: </label> {{ primaryUnit.igFhwaDate | date: 'MM/dd/yy' }}</h4>
+          </div>
+        </div>
+        
+        <div class="margin_bottom_20"></div>
+
+        <div *ngIf="matedUnitExists()">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4><label>Mate ID: </label> {{ matedUnit.igUnitId }}</h4>
+              <h4><label>Condition: </label> {{ matedUnit.igCondition }}</h4>
+            </div>
+            <div class="col-md-4">
+              <h4><label>Type: </label> {{ matedUnit.equipmentType.equipmentName }}</h4>
+              <h4><label>Manufacturer: </label> {{ getGateValue(matedUnit.igManufacturer) }}</h4>
+            </div>
+            <div class="col-md-4">
+              <h4><label>Size: </label> {{ matedUnit.igEquipmentSize }}</h4>
+              <h4><label>Mfg Date: </label> {{ matedUnit.igMfgDate }}</h4>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="matedIsChassis()">
+              <div class="col-md-4">
+                <h4><label>VIN: </label> {{ matedUnit.igVin }}</h4>
+                <h4><label>Expires: </label> {{ matedUnit.igLicenseExpiration }}</h4>
+              </div>
+              <div class="col-md-4">
+                <h4><label>License: </label> {{ matedUnit.igLicense }}</h4>
+                <h4><label>FHWA Problem: </label> {{ matedUnit.igLicenseProblem }}</h4>
+              </div>
+              <div class="col-md-4">
+                <h4><label>State: </label> {{matedUnit.igLicenseState }}</h4>
+                <h4><label>FHWA Date: </label> {{ matedUnit.igFhwaDate | date: 'MM/dd/yy' }}</h4>
+              </div>
+          </div>
+
+        </div> 
+                
+        <div class="margin_bottom_20"></div>
+
+        <div *ngIf="relatedUnitExists()">
+
+          <div class="row">
+            <div class="col-md-4">
+              <h4><label>Related ID: </label> {{ relatedUnit.igUnitId }}</h4>
+              <h4><label>Condition: </label> {{ relatedUnit.igCondition }}</h4>
+            </div>
+            <div class="col-md-4">
+              <h4><label>Type: </label> {{ relatedUnit.equipmentType.equipmentName }}</h4>
+              <h4><label>Manufacturer: </label> {{ getGateValue(relatedUnit.igManufacturer) }}</h4>
+            </div>
+            <div class="col-md-4">
+              <h4><label>Size: </label> {{ relatedUnit.igEquipmentSize }}</h4>
+              <h4><label>Mfg Date: </label> {{ relatedUnit.igMfgDate }}</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+              <h4><label>SCAC: </label> {{ primaryUnit.igScac + ' / ' + primaryUnit.igTruckingCo }}</h4>
+              <h4><label>Notes: </label> {{ primaryUnit.igNotes }}</h4>
+              <h4><label>Driver Name: </label> {{ primaryUnit.igDriverName }}</h4>
+            </div>
         </div>
 
       </tab>

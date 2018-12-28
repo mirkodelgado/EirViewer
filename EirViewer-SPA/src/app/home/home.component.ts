@@ -38,10 +38,9 @@ export class HomeComponent implements OnInit {
 
       console.log('got eir');
 
-      this.gateService.setUserParams(value.eir_unit);
+      this.gateService.setEirParam(value.eir_unit);
 
       this.router.navigate(['app-eirresults']);
-
 
       // this.gateService.getGateByEir(this.userParams).subscribe((gateUnits: Gate[]) => {
 
@@ -62,24 +61,28 @@ export class HomeComponent implements OnInit {
 
       console.log('got unit');
 
-      this.userParams.unitId = value.eir_unit;
+      this.gateService.setUnitParam(value.eir_unit);
 
-      this.gateService.getGateByUnit(this.userParams).subscribe((gateUnits: Gate[]) => {
+      this.router.navigate(['app-unitresults']);
 
-        this.gateUnits = gateUnits;
+      // this.userParams.unitId = value.eir_unit;
 
-        if (this.gateUnits.length < 1) {
-          console.log('error1');
-          this.alertifyService.error('Unit ' + value.eir_unit + ' could not be found');
-        } else {
-          this.router.navigate(['app-unitresults']);
-        }
+      // this.gateService.getGateByUnit(this.userParams).subscribe((gateUnits: Gate[]) => {
 
-      },
-      error => {
-        console.log('error2:' + error);
-        this.alertifyService.error(error);
-      });
+      //  this.gateUnits = gateUnits;
+
+      //  if (this.gateUnits.length < 1) {
+      //    console.log('error1');
+      //    this.alertifyService.error('Unit ' + value.eir_unit + ' could not be found');
+      //  } else {
+      //    this.router.navigate(['app-unitresults']);
+      //  }
+
+      // },
+      // error => {
+      //  console.log('error2:' + error);
+      //  this.alertifyService.error(error);
+      // });
 
     }
 

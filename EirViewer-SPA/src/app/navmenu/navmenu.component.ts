@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-navmenu',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavmenuComponent implements OnInit {
 
-  constructor() { }
+  modalRef: BsModalRef;
+
+  config = {
+    animated: true
+  };
+
+  crDate = new Date().getFullYear();      // get current year for footer copyright
+
+  constructor(private modalService: BsModalService) { }
 
   ngOnInit() {
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, this.config);
   }
 
 }

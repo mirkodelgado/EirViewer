@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgxGalleryOptions, NgxGalleryImage, NgxGalleryAnimation } from 'ngx-gallery';
 import { GateService } from './../_services/gate.service';
 import { Gate } from '../_models/gate';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
   selector: 'app-eirresults',
@@ -24,8 +25,10 @@ export class EirresultsComponent implements OnInit {
   ngOnInit() {
 
      this.route.data.subscribe(data => {
-      this.gate = data['gate'];
+      this.gate = data['eir'];
      });
+
+
 
     // this.gate = this.gateService.getGateEirResult();
 
@@ -96,4 +99,80 @@ export class EirresultsComponent implements OnInit {
 
     return imageUrls;
   }
+
+  getGateValue(value: string): string {
+
+    if (value != null && value !== '') {
+      return value;
+    }
+
+    return 'N/A';
+  }
+
+  getGateHoldValue(value: string): string {
+
+    if (value != null && value !== '') {
+      return value;
+    }
+
+    return 'None';
+  }
+
+  getGateEmptyLoadedValue(value: string): string {
+
+    if (value != null && value === '0') {
+      return 'Empty';
+    }
+
+    return 'Loaded';
+  }
+
+  getGateGrossWeightValue(value: string): string {
+
+    if (+value === 0) {
+      return 'N/A';
+    }
+
+    return value;
+  }
+
+
+
+  primaryIsChassis(): boolean {
+
+    if (+this.primaryUnit.igEquipmentType === 1) {
+      return true;
+    }
+
+    return false;
+  }
+
+  matedIsChassis(): boolean {
+
+    if (+this.matedUnit.igEquipmentType === 1) {
+      return true;
+    }
+
+    return false;
+  }
+
+
+  matedUnitExists(): boolean {
+
+    if (this.matedUnit != null) {
+      return true;
+    }
+
+    return false;
+  }
+
+  relatedUnitExists(): boolean {
+
+    if (this.relatedUnit != null) {
+      return true;
+    }
+
+    return false;
+  }
+
 }

@@ -1,5 +1,6 @@
 import { Customer } from './customer';
 import { Depot } from './depot';
+import { EquipmentType } from './equipmentType';
 
 export interface Gate {
     igClientId: number;
@@ -40,7 +41,7 @@ export interface Gate {
     igLicenseExpiration: string;
     igLicenseProblem: string;
 
-    igFhwa?: Date;
+    igFhwaDate?: Date;
     igFhwaStatus: string;
     igOnHold: string;
     igOnHoldReason: string;
@@ -79,4 +80,5 @@ export interface Gate {
 
     customer: Customer;
     depot: Depot;
+    equipmentType: EquipmentType;
 }
