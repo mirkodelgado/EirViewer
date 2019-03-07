@@ -11,9 +11,12 @@ export class NavmenuComponent implements OnInit {
 
   modalRef: BsModalRef;
 
+  navbarOpen = false;
+
   config = {
     animated: true
   };
+
 
   crDate = new Date().getFullYear();      // get current year for footer copyright
 
@@ -24,6 +27,10 @@ export class NavmenuComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, this.config);
+  }
+
+  toggleNavbar() {
+    this.navbarOpen = !this.navbarOpen;
   }
 
 }

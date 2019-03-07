@@ -4,6 +4,7 @@ import { Gate } from '../_models/gate';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { PictureInfo } from '../_models/pictureInfo';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { PictureInfo } from '../_models/pictureInfo';
 
 export class GateService {
 
-  baseUrl = 'http://localhost:5000/api/gate/';
+  baseUrl = environment.apiUrl + 'gate/';
 
   gateUnitResults: Gate[];
   gateEirResult: Gate[];

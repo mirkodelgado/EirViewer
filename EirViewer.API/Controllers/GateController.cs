@@ -74,7 +74,7 @@ namespace EirViewer.API.Controllers
                 });                 
             }
    
-            return Ok(response);
+            //return Ok(response);
         }
 
         [HttpGet("getbyunitid")]
